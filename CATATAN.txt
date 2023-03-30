@@ -12,4 +12,6 @@
 - laravel doctrine
 - app service provider atur paginator utk bootstrap
     https://stackoverflow.com/questions/63840416/how-to-fix-laravel-8-ui-paginate-problem
-
+- route service provider = /home -> /
+- override showRegistrationForm di RegisterController
+- menambahkan method baru di RegisterController method check dan tambahkan route nya di api.php

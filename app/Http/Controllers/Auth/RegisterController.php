@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -42,6 +44,17 @@ class RegisterController extends Controller
     }
 
     /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        $data['categories'] = Category::all();
+        return view('auth.register', $data);
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -53,6 +66,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'store_name' => ['nullable', 'string', 'min:8'],
+            'categories_id' => ['nullable', 'integer', 'min:8', 'exists:categories,id'],
+            'is_store_open' => ['required'],
         ]);
     }
 
@@ -68,11 +84,24 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'store_name' => isset($data['store_name']) ? $data['store_name'] : NULL,
+            'categories_id' => isset($data['categories_id']) ? $data['categories_id'] : NULL,
+            'store_status' => $data['is_store_open'] ? 1 : 0
         ]);
     }
 
     public function success()
     {
         return view('auth.success');
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return [type]
+     */
+    public function check(Request $request)
+    {
+        return User::where('email', $request->email)->count() > 0 ? 'Unavailable' : "Available";
     }
 }
