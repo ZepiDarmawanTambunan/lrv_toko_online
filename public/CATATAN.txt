@@ -1,0 +1,7 @@
+- download bootstrap 4.3.1
+- download jquery
+- download vue js 2.6 https://v2.vuejs.org/v2/guide/installation.html#Direct-lt-script-gt-Include
+- simpan 3 folder tersebut di /vendor
+- siapkan folder style dan style css
+- siapkan folder images atau assets
+- siapkan index.html

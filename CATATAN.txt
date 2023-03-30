@@ -1,0 +1,15 @@
+- laravel buat proyek
+- laravel ui auth
+- auth bootstrap
+- buat migration
+- php artisan migrate
+- buat model
+- buat middleware IsAdmin
+- slicing view
+- install yajra data tables
+- cdn yajra di layouts/admin
+- php artisan storage:link
+- laravel doctrine
+- app service provider atur paginator utk bootstrap
+    https://stackoverflow.com/questions/63840416/how-to-fix-laravel-8-ui-paginate-problem
+
